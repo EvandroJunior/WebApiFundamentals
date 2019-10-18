@@ -1,9 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TheCodeCamp.Models;
 
 namespace TheCodeCamp.Data
@@ -13,7 +8,8 @@ namespace TheCodeCamp.Data
         public CampMappingProfile()
         {
             CreateMap<Camp, CampModel>()
-                .ForMember(x => x.Venue, c => c.MapFrom(m => m.Location.VenueName));
+                .ForMember(x => x.Venue, c => c.MapFrom(m => m.Location.VenueName))
+                .ReverseMap();
 
             CreateMap<Talk, TalkModel>();
             CreateMap<Speaker, SpeakerModel>();
