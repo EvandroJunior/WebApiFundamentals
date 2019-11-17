@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using TheCodeCamp.Data;
@@ -141,7 +143,6 @@ namespace TheCodeCamp.Controllers
                     return Ok();
                 else
                     return InternalServerError();
-
             }
             catch (Exception ex)
             {
