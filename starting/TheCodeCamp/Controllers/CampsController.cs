@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using TheCodeCamp.Data;
@@ -120,6 +118,30 @@ namespace TheCodeCamp.Controllers
                     return Ok(_mapper.Map<CampModel>(camp));
                 else
                     return InternalServerError();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [Route("{moniker}")]
+        public async Task<IHttpActionResult> Delete(string moniker)
+        {
+            try
+            {
+                var camp = await _repository.GetCampAsync(moniker);
+
+                if (camp == null)
+                    return NotFound();
+
+                _repository.DeleteCamp(camp);
+
+                if (await _repository.SaveChangesAsync())
+                    return Ok();
+                else
+                    return InternalServerError();
+
             }
             catch (Exception ex)
             {
