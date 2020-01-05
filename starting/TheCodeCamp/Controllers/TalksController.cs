@@ -8,7 +8,7 @@ using TheCodeCamp.Models;
 
 namespace TheCodeCamp.Controllers
 {
-    [RoutePrefix("api/camps/{moniker}")]
+    [RoutePrefix("api/camps/{moniker}/talks")]
     public class TalksController : ApiController
     {
         private readonly ICampRepository _repository;
