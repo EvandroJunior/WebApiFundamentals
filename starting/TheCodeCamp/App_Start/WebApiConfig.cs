@@ -4,6 +4,8 @@ using Microsoft.Web.Http.Versioning;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http;
 using System.Web.Http.Routing;
+using Microsoft.Web.Http.Versioning.Conventions;
+using TheCodeCamp.Controllers;
 
 namespace TheCodeCamp
 {
@@ -23,6 +25,12 @@ namespace TheCodeCamp
                 //ApiVersionReader.Combine(
                 //    new HeaderApiVersionReader("X-Version"),
                 //    new QueryStringApiVersionReader("ver"));
+
+                cfg.Conventions.Controller<TalksController>()
+                    .HasApiVersion(1, 0)
+                    .HasApiVersion(1, 1)
+                    .Action(m => m.Get(default(string), default(int), default(bool)))
+                        .MapToApiVersion(2, 0);
             });
 
             // Change Case of Json
